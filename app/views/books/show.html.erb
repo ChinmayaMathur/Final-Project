@@ -1,0 +1,101 @@
+<br>
+<div class="show">
+      <div class="detail_img">
+            <%= image_tag @book.detail_img %>
+      </div>
+
+      <h1><%= @book.name_of_book %></h1>
+
+      <h3>About the Book: </h3> <%= @book.description %>
+
+      <p><b>Author:</b> <%= @book.author %></p>
+
+      <p><b> Price of the book: </b><%= number_to_currency @book.price %></p>
+
+      <p><b> Number of book no_of_books_available: </b> <%= @book.no_of_books_available %> books</p>
+      
+      <br/>
+
+      <div class="like_btn">
+            <div>
+                  <% @like = @book.likes.find_by(custumer: current_custumer) %>
+                  <% if current_custumer %>
+                        <% if @like.present? %>
+                              <div class="unlike">
+                                    <%= button_to 'Liked', like_path(@like), method: :delete %>
+                              </div>
+                        <% else %> 
+                              <div class="like">
+                                    <%= button_to 'Like', book_likes_path(@book), method: :post %>
+                              </div>
+                        <% end %>
+                  <% end %>
+
+                  <br>
+
+                  <% if current_custumer != nil && current_custumer.is_admin%>
+                        
+                              <% if can? :crud, @book %>
+                                    <%= link_to "Edit", edit_book_path(@book) %>
+                              <% end %>
+
+                              <br>
+                  
+                              <% if can? :crud, @book %>
+                                    <%= button_to "Delete", book_path(@book), method: :delete, data: {confirm: "Are you sure?"} %>
+                              <% end %>
+                  <% end %>
+            </div>
+
+            <div class="like">
+                  ❤: <%= @book.likes.count %>
+            </div>
+      </div>
+
+
+      <br>
+      <h2> Write a Comment </h2>
+      <%= form_with(model:[@book, @comment], local:true) do |f| %>
+            <% if @comment.errors.full_messages.each do |msg| %>
+                  <ul>
+                        <li> <%= msg %> </li>
+                  <ul>
+            <% end %>
+      <% end %>
+      <div>
+            <%= f.text_area(:body, cols: 50, rows: 5, placeholder: "How did you like the book?", class: 'review-form') %>
+      </div>
+      <%= f.submit "Submit" %>
+      <% end %>
+
+      <br/>
+      <br/>
+
+      <h2>Comments</h2>
+      <br/>
+      <div class"comment">
+            <% @comments.each do |comment| %>
+                  <%= comment.body %>
+                  <br/>
+                  <p>
+                  <b>Commented by:</b>
+                  <%= comment.custumer&.full_name || "Deleted" %>
+                  </p>
+                  <p>
+                  <b>At:</b> <%= distance_of_time_in_words(comment.created_at, Time.now + 1.minutes) %> ago 
+                  </p>
+
+                  <% if can? :crud, comment %>
+                        <%= button_to(
+                                    "Delete",
+                                    book_comment_path(@book, comment),
+                                    method: :delete,
+                                    data: {
+                                          confirm: "Are you sure?"
+                                    }, 
+                                    class: "some-css-class")
+                        %>
+                  <% end %>
+                  <hr/>
+            <% end %>
+</div>

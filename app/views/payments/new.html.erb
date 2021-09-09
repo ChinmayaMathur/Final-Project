@@ -1,0 +1,27 @@
+<h1 class="pay">Payment</h1>
+
+<% if @payment.errors.any? %>
+      <% @payment.errors.full_messages.each do |message| %>
+            <div class="alert alert-danger" role="alert">
+                  <%= message %>
+            </div>
+      <% end %>
+<% end %>
+<br/>
+
+<div class="pay_box">
+<br>
+      <%= form_for @payment, url: book_payments_path do |f| %>
+            <div class="amount">
+                  <%= f.label :amount %>
+                  <%= f.number_field :amount %>
+            </div>
+
+            <br/>
+            
+            <div class="submit">
+                  <%= f.submit 'Pay', class: 'btn btn-primary' %>
+            </div>
+            <br>
+      <% end %>
+</div>

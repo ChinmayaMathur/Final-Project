@@ -1,0 +1,45 @@
+<div class="contact">
+      <h1>Contact us</h1>
+</div>
+
+<div class="contact-form">
+      <div class="contact-details">
+      <br>
+            <%= form_tag contact_submit_path %>
+            <div class="name">
+                  <%= label_tag :full_name %> :
+                  <%= text_field_tag :full_name %>
+            </div>
+
+            <br>
+            <br>
+            <br>
+
+            <div class="email">
+                  <%= label_tag :email %> :
+                  <%= email_field_tag :email %>
+            </div>
+
+            <br>
+            <br>
+            <br>
+
+            <div class="about">
+                  <%= label_tag :about %> :
+                  <%= text_field_tag :about %>
+            </div>
+
+            <br>
+            <br>
+            <br>
+
+            <div class="submit">
+                  <%= submit_tag "CONTACT US" %>
+            </div>
+      </div>
+
+      <div>
+            <img src="https://media.istockphoto.com/photos/building-a-strong-team-wooden-blocks-with-people-icon-on-pink-human-picture-id1227412970?k=20&m=1227412970&s=612x612&w=0&h=BYWAEN4BLTW8g3tl5LcnimYHfhBYjTveXeURx7sna3c=">
+      </div>
+</div>
+

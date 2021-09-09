@@ -1,0 +1,29 @@
+<br/>
+<br>
+
+<section class="items">
+<% @books.each do |book| %>
+      <div class="item">
+            <h1><%= link_to book.name_of_book, book_path(book) %></h1>
+            <div class="main_img">
+                  <%= image_tag book.main_img %>
+            </div>
+            <br>
+            <div class="box">
+                  <div>
+                        <b>Author: <%= book.author %></b>
+                  </div>
+            </div>
+            <div>
+            <% if current_custumer %>
+                  <% if @cart.include?(book) %>
+                        <p><%= button_to "remove from cart", remove_from_cart_path(book), method: :delete %></p>
+                  <% else %>
+                        <p><%= button_to "add to cart", add_to_cart_path(book.id), method: :post %></p>
+                  <% end %>
+            <% end %>
+            </div>
+            <hr/>
+      </div>
+<% end %>
+</section>

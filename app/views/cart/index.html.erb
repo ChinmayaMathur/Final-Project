@@ -1,0 +1,35 @@
+<h1 class="cart">Shopping Cart</h1>
+<div class="container">
+      <div class= "buy">
+            <% if @cart.empty? %>
+                  <p> Cart Empty</p>
+            <% else %>
+                  <ul>
+                        <% @cart.each do |book| %>
+                              <li>
+                                    <h4><p><%= book.name_of_book %></p></h4>
+                                    Price: <%= number_to_currency book.price %>
+                                    <br>
+                                    <%= button_to "remove from cart", remove_from_cart_path(book), method: :delete %>
+                              </li>
+
+                              <br> 
+
+                              <% if current_custumer %>
+                              <%= link_to(
+                                    "Pay",
+                                    new_book_payment_path(book),
+                                    class: "some-css-class")
+                              %>
+                              <% end %> 
+                              <br>
+                        <% end %>
+                  </ul>
+
+            <% end %>
+      </div>
+
+     
+            <img src="https://media.istockphoto.com/photos/girl-with-credit-card-at-the-bookshop-picture-id535524316?b=1&k=20&m=535524316&s=170x170&h=d5H-rhYX_fzyek9Bu3vo_GFVjkT7oBaA9R1Zbf0WzjA=", class="checkout_img">
+     
+</div>

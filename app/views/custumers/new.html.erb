@@ -1,0 +1,41 @@
+<h1 class="sign_in"> Sign Up </h1>
+<%= form_with model:@custumer, local: true do |f| %>
+      <% if @custumer.errors.any? %>
+      <p>
+            <%= @custumer.errors.full_messages.join(",") %>
+      </p>
+      <% end %>
+
+<div class="name">
+      <%= f.label :first_name %>
+      <%= f.text_field :first_name %>
+</div>
+<br/>
+<div class="name">
+      <%= f.label :last_name %>
+      <%= f.text_field :last_name %>
+</div>
+<br/>
+<div class="email">
+      <%= f.label :email %>
+      <%= f.text_field :email %>
+</div>
+<br/>
+<div class="password">
+      <%= f.label :password %>
+      <%= f.text_field :password %>
+</div>
+
+<br/>
+
+<div class="password">
+      <%= f.label :password_confirmation %>
+      <%= f.text_field :password_confirmation %>
+</div>
+
+<br/>
+
+<div class="submit">
+<%= f.submit "Sign up" %>
+<div>
+<% end %>

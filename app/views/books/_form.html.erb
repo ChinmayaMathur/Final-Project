@@ -1,0 +1,63 @@
+<div class="page">
+<%= form_for @book do |f| %>
+      <% if @book.errors.present? %>
+        <p><%= @book.errors.full_messages.join(', ') %></p>
+    <% end %>
+    <br>
+    <br>
+      <div class="form">
+      <b><%= f.label :name_of_book%> </b>
+      <%= f.text_field :name_of_book %>
+      </div>
+
+      <br>
+
+      <div class="form">
+      <b><%= f.label :description %></b>
+      <%= f.text_field :description %>
+      </div>
+
+      <br>
+
+      <div class="form">
+      <b><%= f.label :author %></b>
+      <%= f.text_field :author %>
+      </div>
+
+      <br>
+
+      <div class="form">
+      <b><%= f.label :price %></b>
+      <%= f.number_field :price %>
+      </div>
+
+      <br>
+
+      <div class="form">
+      <b><%= f.label :no_of_books_available %></b>
+      <%= f.text_field :no_of_books_available %>
+      </div>
+
+      <br>
+
+      <div class="form">
+      <b><%= f.label :main_img %></b>
+      <%= f.text_field :main_img %>
+      </div>
+
+      <br>
+
+      <div class="form">
+      <b><%= f.label :detail_img %></b>
+      <%= f.text_field :detail_img %>
+      </div>
+
+      <br>
+      <br>
+      <br>
+      
+      <div class="form">
+      <%= f.submit %>
+      </div>
+<% end %>
+</div>
