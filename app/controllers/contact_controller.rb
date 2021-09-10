@@ -19,3 +19,4 @@ class ContactController < ApplicationController
           end
       end
 end
+
